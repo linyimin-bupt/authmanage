@@ -51,6 +51,11 @@ public class SDKFilter implements Filter {
     }
 
     private int verify(HttpServletRequest request, HttpServletResponse response) {
+        // help页面不做认证
+        String path = request.getRequestURI();
+        if (path.indexOf("/help") != -1) {
+            return 0;
+        }
         if (systemService == null) {
             systemService = AppContextService.applicationContext.getBean(SystemService.class);
         }

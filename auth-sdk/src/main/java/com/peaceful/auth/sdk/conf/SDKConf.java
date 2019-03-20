@@ -46,15 +46,15 @@ public class SDKConf {
         secret = MY_APP_CONFIGS.getString(AUTH_SDK.SYSTEM_SECRET);
         service_address = MY_APP_CONFIGS.getString(AUTH_SDK.AUTH_SERVICE_ADDRESS); //服务地址
         add = service_address;
-        help_doc = add + "/help.do";
+        help_doc = add + "/sdk/help.do";
         success_init_info = "AuthService  be successfully initialized. See " + help_doc + " for more information";
         create_session_exception = help_doc + "#createSessionException";
         config_info = help_doc + "#config";
-        system_all_info = add + "/findSystem.do?systemId=" + system_id; //获得系统信息
+        system_all_info = add + "/sdk/findSystem.do" ; //获得系统信息
         user_info = add + "/findUser.do?systemId=" + system_id + "&userEmail="; // 获得用户信息
         system_basic_info = add + "/token.do";// 获取通信token
         identification_email = add + "/identification.do";// 账号认证
-        find_vcs = add + "/findVCS.do"; // 版本信息
+        find_vcs = add + "/sdk/findVCS.do"; // 版本信息
         insert_user = add + "/addUser.do";// 添加新用户
         update_user = add + "/updateUser.do";// 更新用户
         insert_role = add + "/addRole.do";// 添加角色

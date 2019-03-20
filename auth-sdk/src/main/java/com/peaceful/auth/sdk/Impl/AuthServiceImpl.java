@@ -81,7 +81,7 @@ public class AuthServiceImpl implements com.peaceful.auth.sdk.api.AuthService {
         if (element != null)
             vcsNum = (String) element.getObjectValue();
         if (StringUtils.isEmpty(vcsNum)) {
-            vcsNum = HttpUtils.get(publicServiceURL.find_vcs);
+            vcsNum = HttpUtils.get(publicServiceURL.find_vcs + "?systemId=" + SDKConf.system_id + "&token=" + SDKConf.token);
             CACHE_SERVICE.put("vcs", vcsNum, Integer.parseInt(publicServiceURL.client_cache_valid_time));
         }
         return vcsNum;
@@ -98,7 +98,7 @@ public class AuthServiceImpl implements com.peaceful.auth.sdk.api.AuthService {
         }
         JSONSystem system = null;
         if (element == null) {
-            String result = HttpUtils.get(publicServiceURL.system_all_info);
+            String result = HttpUtils.get(publicServiceURL.system_all_info + "?systemId=" + SDKConf.system_id + "&token=" + SDKConf.token);
             try {
                 system = JSON.parseObject(result, JSONSystem.class);
                 CACHE_SERVICE.put("system", system, 686868);
