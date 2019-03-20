@@ -35,16 +35,16 @@
 
                 </ul>
             </li>
-            <li class="active">
-                <a href="#">资源管理</a>
-                <ul class="nav">
-                    <li id="navG"><a href="/admin/addResourcePre.do">添加资源</a>
-                    </li>
-                    <li id="navH"><a
-                            href="/admin/findResources.do">查询资源</a></li>
+            <%--<li class="active">--%>
+                <%--<a href="#">资源管理</a>--%>
+                <%--<ul class="nav">--%>
+                    <%--<li id="navG"><a href="/admin/addResourcePre.do">添加资源</a>--%>
+                    <%--</li>--%>
+                    <%--<li id="navH"><a--%>
+                            <%--href="/admin/findResources.do">查询资源</a></li>--%>
 
-                </ul>
-            </li>
+                <%--</ul>--%>
+            <%--</li>--%>
             <li class="active">
                 <a href="#">用户管理</a>
                 <ul class="nav">
