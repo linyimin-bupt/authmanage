@@ -14,7 +14,7 @@
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#getting-started">（内部管理系统，非请勿入）</a>
+                    <a href="/sdk/help.do">SDK使用说明</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
