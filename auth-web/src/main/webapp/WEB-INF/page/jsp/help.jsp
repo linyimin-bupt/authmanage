@@ -24,84 +24,172 @@
     <div class="bs-callout bs-callout-warning" id="jquery-required" style="margin-top: -30px;">
         <h4 class="page-header">关于</h4><br>
 
-        <p>权限中心系统是由大街基础平台部开发的一套统一控制系统权限的API，它的基本功能如下：</p>
+        <p>权限中心系统是根据大街基础平台部开发的一套统一控制系统权限的API改进而来，它的基本功能如下：</p>
 
         <p class="text-center">
-            <img src="/image/authDesign.jpg">
+            <img src="/image/auth.png">
         </p>
         <h4 class="page-header" id="config">使用与配置</h4><br>
 
         <p>
-            一、首先你需要权限中心去注册你的系统，如下,你可以在里面填下自己系统一些的基本信息，系统会为你的系统分配一个唯一标识，<br>当你配置你的系统是会用到这个标识
+            一、首先到需要权限中心注册系统，如下,填写系统相关的基本信息，然后系统会为你的系统分配一个唯一标识，APP key及secret。在客户端配置的时候需要用到这三个值。
         </p>
 
         <p class="text-center">
             <img src="/image/registSystem.jpg" width="876">
         </p>
-        二、引入API包，并在你项目的classpath根路径引入配置文件：auth.properties
+        <p>
+            二、引入SDK jar包
+        </p>
         <p class="text-center">
 
             <code>
                 <pre>
-                1.0 authApi mvn坐标
-                                  groupId:com.dajie
-                                  artifactId:authApi
-                                  version:1.0-SNAPSHOT
-                2.0 authApi mvn坐标发生改变
-                                  groupId:com.dajie.nuggets
-                                  artifactId:authApi
-                                  version:2.0-SNAPSHOT
-                1.0 auth.properties配置
-                                  auth.systemId=16    // 系统标识，当在系统中心添加系统会分配一个唯一的系统标识<br>
-                                  auth.AuthServiceAddress=http://192.168.27.57:8412   //权限服务中心地址<br>
-                                  auth.sessionOutTime=2 //权限中心建立会话超时时间，与权限中心建立一次会话的过程，会把数据缓存在你的系统当中，
-                                        过了这个时间，缓存数据也就消失，建议该值最好和你的系统会话时间一致，
-                                        这样会提高你的系统性能，（单位秒）
-                2.0 auth.properties文件配置发生改变
-                                  auth.app.id=1  //系统标识
-                                  auth.service.address=http://192.168.14.205:8080 //权限中心地址
-                                  auth.user.session.out.time=2 // 用户信息缓存时间
-                                  auth.system.session.out.time=300 // 系统信息缓存时间
-                获得权限服务唯一调用入口(注意会抛出一个让你明确处理的异常):
-                                  AuthService authService = AuthServiceImpl.getAuthService();
-                    </pre>
+1. 打包
+    git clone https://github.com/linyimin-bupt/peaceful-basic-platform.git
+    cd ./peaceful-basic-platform
+    bash ./build.sh
+    cd ..
+    rm -rf peaceful-basic-platform
+    git clone https://github.com/linyimin-bupt/authmange.git
+    cd authmanage/auth-sdk
+    mvn -f pom.xml install -Dmaven.test.skip=true
+    cd ..
+    cd auth-spring
+    mvn -f pom.xml install -Dmaven.test.skip=true
+    cd ..
+    rm -rf authmanage
+
+2. 引入jar包
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.peaceful&lt;/groupId&gt;
+        &lt;artifactId&gt;nuggets-auth-sdk&lt;/artifactId&gt;
+        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.peaceful&lt;/groupId&gt;
+        &lt;artifactId&gt;nuggets-auth-srping&lt;/artifactId&gt;
+        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.peaceful&lt;/groupId&gt;
+        &lt;artifactId&gt;peaceful-common-utils&lt;/artifactId&gt;
+        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;/dependency&gt;
+
+                </pre>
             </code>
         </p>
         <p>
-            三、配置已经完成了，你可以在权限中心系统配置你的基本权限设置，然后通过提供的API获得你想要的数据：例如加入权限
+            三、添加配置文件：在项目的classpath根路径引入配置文件：auth.properties
+        </p>
+        <p class="text-center">
+            <code>
+                <pre>
+    auth.app.id=1
+    auth.appkey=356c2e62887a17d67af5aa489583e845
+    auth.secret=3b30c75b9f3ad2c1a04233a90803cb8d
+    #权限中心地址
+    #sdk包与权限中心建立连接，需要知道权限中心的位置
+    auth.service.address=http://127.0.0.1:8888
+    #user info 缓存时间
+    #第一次通过getUser()获取用户权限信息时，会把配置信息缓存在客户端的服务器，之后会在缓存中获取
+    #如果缓存失效，会再次请求权限中心
+    auth.user.session.out.time=2
+    auth.client.cache.valid.time=1
+    #system info 缓存时间 ，目的同上
+    auth.system.session.out.time=300
+    auth.context.impl.class=com.peaceful.auth.sdk.other.AuthContextImpl
+                </pre>
+            </code>
+        </p>
+        <p>
+            四、引入Spring bootl拦截器， 添加FilterConfig和InterceptorConfig两个文件
+        </p>
+        <p class="text-center">
+            <code>
+                <pre>
+import com.peaceful.common.util.HttpContextFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Configuration
+public class FilterConfig {
+    @Bean
+    public FilterRegistrationBean httpContextFilter(){
+        //创建 过滤器注册bean
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+
+        HttpContextFilter filter = new HttpContextFilter();
+
+        registrationBean.setFilter(filter);
+
+        List urls = new ArrayList();
+        urls.add("/*");   //给所有请求加过滤器
+        //设置 有效url
+        registrationBean.setUrlPatterns(urls);
+
+        return registrationBean;
+    }
+}
+
+import com.peaceful.auth.spring.AuthInterceptor;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+@Configuration
+public class InterceptorConfig extends WebMvcConfigurerAdapter {
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new AuthInterceptor());
+    }
+}
+
+                </pre>
+            </code>
+        </p>
+        <p>
+
+            五、配置已经完成了，你可以在权限中心系统配置你的基本权限设置，然后通过提供的API获得你想要的数据：例如加入权限
         </p>
 
         <p class="text-center">
             <img src="/image/authConfig.jpg" width="876">
         </p>
         <br><br>
-        <h4 class="page-header" id="createSessionException">关于create session exception</h4><br>
-
         <p>
-            <pre>
-          出现此异常一般会有三种可能:<br>
-                一、权限系统服务正在维护中，如果是这种原因，你可以直接通过浏览器直接访问下权限中心系统确认服务是否正在正常服务
-                二、未配置auth.properties或配置格式有问题或引入路径有问题
-                三、未在权限中心系统注册你的系统或配置的服务地址错误
-        </pre>
+            六、使用SDK包进行相关权限管理
         </p>
-        <br><br>
-        <h4 class="page-header" id="update">关于更新</h4><br>
+        <p class="text-center">
+            <code>
+                <pre>
+// 角色为“管理员”的用户才能访问
+@AUTH.Role("管理员")
+@RequestMapping(value = "/item", method = RequestMethod.GET)
+public String addMeta() {
+    return "Hello World";
+}
 
-        <p>
-            <pre>
-          发布2.0版本authApi<br>
-                2.0版本authApi, 增加可选的分组功能,可以对菜单,角色,资源进行分组,(角色,资源分组功能未开放,但系统已支持)
-                1.0版本向后兼容,1.0版本支持升级后权限中心会话,但1.0版本没有2.0版本功能强大,建议使用1.0版本的升级到2.0
-                2.0mvn坐标发生改变: groupId:com.dajie.nuggets
-                                  artifactId:authApi
-                                  version:2.0-SNAPSHOT
-                2.0 auth.properties文件配置发生改变
-                                  auth.app.id=1  //系统标识
-                                  auth.service.address=http://192.168.14.205:8080 //权限中心地址
-                                  auth.user.session.out.time=2 // 用户信息缓存时间
-                                  auth.system.session.out.time=300 // 系统信息缓存时间
-        </pre>
+// 要求登录，才能访问
+@AUTH.RequireLogin
+@AUTH.Role("管理员")
+@RequestMapping(value = "/item", method = RequestMethod.GET)
+public String addMeta() {
+    return "Hello World";
+}
+
+// 或者使用相关接口进行相关扩展
+AuthService authService = AuthServiceImpl.getAuthService()
+// getSystem() 获得客户端在权限中心注册的所有配置信息
+// getUser(String email) 获得客指定用户的所有配置信息
+                </pre>
+            </code>
         </p>
     </div>
 </div>

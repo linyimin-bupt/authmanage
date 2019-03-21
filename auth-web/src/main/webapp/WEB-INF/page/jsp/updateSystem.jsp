@@ -55,12 +55,12 @@
                         </div>
 
                         <div class="input-group">
-                            <span class="input-group-addon">标识</span>
+                            <span class="input-group-addon">标识(APP Key)</span>
                             <input type="text" class="form-control" placeholder="SDK与服务中心通信key，系统会自动生成" name="appkey" value="${system.appkey}" readonly>
                         </div>
 
                         <div class="input-group">
-                            <span class="input-group-addon">秘钥</span>
+                            <span class="input-group-addon">秘钥(Secret)</span>
                             <input type="text" class="form-control" placeholder="SDK与服务中心通信秘钥，系统会自动生成" name="secret" value="${system.secret}" readonly>
                         </div>
 
