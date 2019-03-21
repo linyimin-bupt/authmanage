@@ -9,8 +9,10 @@ import com.peaceful.auth.sdk.exception.CreateSessionException;
 import com.peaceful.auth.data.util.VCS;
 import com.peaceful.auth.data.domain.*;
 import com.peaceful.auth.data.response.Response;
+import com.peaceful.auth.sdk.other.Constant;
 import com.peaceful.auth.sdk.util.HttpUtils;
 import com.peaceful.auth.sdk.util.LoadPropertiesException;
+import com.peaceful.common.util.Http;
 import net.sf.ehcache.Element;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -33,6 +35,19 @@ public class AuthServiceImpl implements com.peaceful.auth.sdk.api.AuthService {
     static final int SUCCESSFUL_INITIALIZATION = 1;
     static int INITIALIZATION_STATE = UNINITIALIZED;
 
+
+    public boolean login(String email, String password) {
+        if (identificationEmail(email, password)) {
+            Http.getRequest().getSession().setAttribute(Constant.CURRENT_USER, email);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void logout() {
+        Http.getRequest().getSession().removeAttribute(Constant.CURRENT_USER);
+    }
 
     /**
      * 取得服务
@@ -212,6 +227,7 @@ public class AuthServiceImpl implements com.peaceful.auth.sdk.api.AuthService {
         data.put("email", email);
         data.put("password", password);
         data.put("systemId", publicServiceURL.system_id);
+        data.put("token", SDKConf.token);
         return ("true".equals(HttpUtils.post(publicServiceURL.identification_email, data)) ? true : false);
     }
 

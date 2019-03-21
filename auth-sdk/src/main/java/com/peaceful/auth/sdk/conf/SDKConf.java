@@ -53,7 +53,7 @@ public class SDKConf {
         system_all_info = add + "/sdk/findSystem.do" ; //获得系统信息
         user_info = add + "/findUser.do?systemId=" + system_id + "&userEmail="; // 获得用户信息
         system_basic_info = add + "/token.do";// 获取通信token
-        identification_email = add + "/identification.do";// 账号认证
+        identification_email = add + "/sdk/identification.do";// 账号认证
         find_vcs = add + "/sdk/findVCS.do"; // 版本信息
         insert_user = add + "/addUser.do";// 添加新用户
         update_user = add + "/updateUser.do";// 更新用户

@@ -15,6 +15,19 @@ import java.util.List;
  * Created by wangjun on 14-4-23.
  */
 public interface AuthService {
+
+    /**
+     * 登录
+     * @param email
+     * @param password
+     * @return
+     */
+    boolean login(String email, String password);
+
+    /**
+     * 退出
+     */
+    void logout();
     /**
      * 获取你系统的全部有效(没有下线的)配置信息
      *
