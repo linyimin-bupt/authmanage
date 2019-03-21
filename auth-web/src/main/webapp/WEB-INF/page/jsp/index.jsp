@@ -29,7 +29,7 @@
             <div  class="bs-callout bs-callout-warning"  id="jquery-required" style="margin-top: 30px;">
                 <h4>统一权限系统</h4><br>
                 <p class="text-center">
-                    <img src="/image/authDesign.jpg">
+                    <img src="/image/auth.png">
                 </p>
             </div>
         </div>
