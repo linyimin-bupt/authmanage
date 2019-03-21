@@ -29,11 +29,11 @@
         <jsp:include page="/resources/pages/menus.jsp"></jsp:include>
         <div class="col-sm-10" role="main">
             <div  class="bs-callout bs-callout-warning"  id="jquery-required" style="margin-top: 30px;">
-                <h4>菜单管理>>查询菜单</h4>
+                <h4>部门管理>>查询部门</h4>
                 <div>
                     <c:choose>
                         <c:when test="${empty requestScope.menus}">
-                            还没有任何菜单
+                            还没有任何部门
                         </c:when>
                         <c:otherwise>
                             <table class="table table-condensed">

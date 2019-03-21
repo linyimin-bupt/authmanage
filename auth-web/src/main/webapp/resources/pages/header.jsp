@@ -29,7 +29,10 @@
                     </c:when>
                     <c:otherwise>
                         <li>
-                            <a href="/login.jsp">请登录&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a href="/login.jsp">登录&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        </li>
+                        <li>
+                            <a href="/register.jsp">注册&nbsp;&nbsp;&nbsp;&nbsp;</a>
                         </li>
                     </c:otherwise>
                 </c:choose>

@@ -26,12 +26,12 @@
             </li>
 
             <li class="active">
-                <a href="#">菜单管理</a>
+                <a href="#">部门管理</a>
                 <ul class="nav">
-                    <li id="navE"><a href="/admin/addMenuPre.do">添加菜单</a>
+                    <li id="navE"><a href="/admin/addMenuPre.do">添加部门</a>
                     </li>
                     <li id="navF"><a
-                            href="/admin/findMenus.do">查询菜单</a></li>
+                            href="/admin/findMenus.do">查询部门</a></li>
 
                 </ul>
             </li>

@@ -161,6 +161,8 @@ public class AdminController {
     @RequestMapping(value = "/updateMenu.do", produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String updateMenu(DJMenu menu, Integer systemId, Integer[] roleIds, HttpServletRequest request) {
+        System.out.println("hhhhdfasdsflsdajflksjdflsdajflkasjdfkl");
+        System.out.println(roleIds);
         if (systemId == null) {
             menu.system = null;
         } else {

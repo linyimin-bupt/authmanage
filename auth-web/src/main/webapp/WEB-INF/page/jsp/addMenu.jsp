@@ -36,30 +36,30 @@
         <jsp:include page="/resources/pages/modal.jsp"></jsp:include>
         <div class="col-sm-10" role="main">
             <div class="bs-callout bs-callout-warning" id="jquery-required" style="margin-top: 30px;">
-                <h4>菜单管理>>添加菜单</h4>
+                <h4>部门管理>>添加部门</h4>
 
                 <div>
                     <form action="/admin/addMenu.do" method="post">
                         <div class="input-group">
                             <span class="input-group-addon">&nbsp;&nbsp;key</span>
-                            <input type="text" class="form-control" placeholder="你的菜单要有一个唯一的标识" name="menukey"
-                                   required="true" message="菜单唯一标识是必须的">
+                            <input type="text" class="form-control" placeholder="部门要有一个唯一的标识" name="menukey"
+                                   required="true" message="部门唯一标识是必须的">
                         </div>
 
                         <div class="input-group">
                             <span class="input-group-addon">名字</span>
-                            <input type="text" class="form-control" placeholder="菜单名字" name="name" required="true"
-                                   message="菜单名字是必须的">
+                            <input type="text" class="form-control" placeholder="部门名字" name="name" required="true"
+                                   message="部门名字是必须的">
                         </div>
 
-                        <div class="input-group">
-                            <span class="input-group-addon">&nbsp;&nbsp;&nbsp;url</span>
-                            <input type="text" class="form-control" placeholder="菜单若有url,请填写对应的url" name="url">
-                        </div>
+                        <%--<div class="input-group">--%>
+                            <%--<span class="input-group-addon">&nbsp;&nbsp;&nbsp;url</span>--%>
+                            <%--<input type="text" class="form-control" placeholder="菜单若有url,请填写对应的url" name="url">--%>
+                        <%--</div>--%>
 
                         <div class="input-group">
                             <span class="input-group-addon">描述</span>
-                            <input type="text" class="form-control" placeholder="简单描述下这个个菜单" name="description">
+                            <input type="text" class="form-control" placeholder="简单描述下这个个部门" name="description">
                         </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"
                                                                                                        value="1" checked
@@ -84,7 +84,7 @@
                         </div>
 
                         <br>
-                        <h4 class="bs-callout-warning">所属上一级菜单</h4>
+                        <h4 class="bs-callout-warning">所属上一级部门</h4>
 
                         <div class="input-group" id="groupList">
                             <input id="funIds" type="hidden" name="parentMenu.id"/>
