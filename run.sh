@@ -41,15 +41,6 @@ echo '----------------------------------------------'
 wait
 echo "准备下载依赖包并开始构建 ..."
 
-#下载依赖包，最好手动将依赖包install到你的本地仓库
-[ -d "./peaceful-basic-platform" ] && rm -rf ./peaceful-basic-platform
-git clone https://github.com/WangJunTYTL/peaceful-basic-platform.git ||  exit 1
-cd peaceful-basic-platform
-mvn clean -P${ENV} -f peaceful-parent/pom.xml install  -Dmaven.test.skip=true || exit 1
-mvn clean -P${ENV} install  -Dmaven.test.skip=true || exit 1
-cd ..
-
-rm -rf peaceful-basic-platform
 mvn -f pom.xml -P${ENV} install -Dmaven.test.skip=true || exit 1
 
 cd auth-web

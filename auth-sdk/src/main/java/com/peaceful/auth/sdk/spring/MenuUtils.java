@@ -1,4 +1,4 @@
-package com.peaceful.auth.spring;
+package com.peaceful.auth.sdk.spring;
 
 import com.peaceful.auth.data.domain.JSONMenu;
 import com.peaceful.auth.sdk.Impl.AuthServiceImpl;

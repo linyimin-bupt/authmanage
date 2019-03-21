@@ -1,4 +1,4 @@
-package com.peaceful.auth.spring;
+package com.peaceful.auth.sdk.spring;
 
 import com.peaceful.auth.sdk.util.AppConfigsImpl;
 import com.peaceful.auth.sdk.util.Util;
@@ -11,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public abstract class AuthContext {
 
-    private static java.lang.String auth_context_impl_class = null;
+    private static String auth_context_impl_class = null;
 
 
     public abstract String getCurrentUser();

@@ -19,7 +19,6 @@
         <module>auth-data-protocol</module>
         <module>auth-service</module>
         <module>auth-sdk</module>
-        <module>auth-spring</module>
         <module>auth-web</module>
         <module>example</module>
     </modules>

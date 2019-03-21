@@ -1,4 +1,4 @@
-package com.peaceful.auth.spring;
+package com.peaceful.auth.sdk.spring;
 
 /**
  * Date 14/11/17.
