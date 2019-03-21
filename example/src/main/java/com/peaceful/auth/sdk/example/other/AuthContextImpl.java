@@ -1,6 +1,6 @@
 package com.peaceful.auth.sdk.example.other;
 
-import com.peaceful.auth.spring.AuthContext;
+import com.peaceful.auth.sdk.spring.AuthContext;
 import com.peaceful.common.util.Http;
 
 /**
