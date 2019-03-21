@@ -66,12 +66,8 @@
         &lt;groupId&gt;com.peaceful&lt;/groupId&gt;
         &lt;artifactId&gt;nuggets-auth-sdk&lt;/artifactId&gt;
         &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
-        &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.peaceful&lt;/groupId&gt;
-        &lt;artifactId&gt;nuggets-auth-srping&lt;/artifactId&gt;
-        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
-        &lt;/dependency&gt;
+    &lt;/dependency&gt;
+
     &lt;dependency&gt;
         &lt;groupId&gt;com.peaceful&lt;/groupId&gt;
         &lt;artifactId&gt;peaceful-common-utils&lt;/artifactId&gt;
@@ -138,7 +134,7 @@ public class FilterConfig {
     }
 }
 
-import com.peaceful.auth.spring.AuthInterceptor;
+import com.peaceful.auth.sdk.spring.AuthInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;

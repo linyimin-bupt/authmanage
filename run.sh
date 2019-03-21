@@ -38,8 +38,14 @@ cmd_is_exist "mvn"
 cmd_is_exist "git"
 echo '----------------------------------------------'
 
-wait
+git clone https://github.com/linyimin-bupt/peaceful-basic-platform.git
+
 echo "准备下载依赖包并开始构建 ..."
+
+cd peaceful-basic-platform
+bash build.sh
+cd ..
+wait
 
 mvn -f pom.xml -P${ENV} install -Dmaven.test.skip=true || exit 1
 
