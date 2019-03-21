@@ -138,7 +138,7 @@ public class AuthServiceImpl implements com.peaceful.auth.sdk.api.AuthService {
         }
         JSONUser user = null;
         if (element == null) {
-            String result = HttpUtils.get(publicServiceURL.user_info + email);
+            String result = HttpUtils.get(publicServiceURL.user_info + email + "&token=" + SDKConf.token);
             boolean flag = true;
             if ("null".equals(result)) {
                 clearSession(email);

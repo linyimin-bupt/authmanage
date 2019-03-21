@@ -51,7 +51,7 @@ public class SDKConf {
         create_session_exception = help_doc + "#createSessionException";
         config_info = help_doc + "#config";
         system_all_info = add + "/sdk/findSystem.do" ; //获得系统信息
-        user_info = add + "/findUser.do?systemId=" + system_id + "&userEmail="; // 获得用户信息
+        user_info = add + "/sdk/findUser.do?systemId=" + system_id + "&userEmail="; // 获得用户信息
         system_basic_info = add + "/token.do";// 获取通信token
         identification_email = add + "/sdk/identification.do";// 账号认证
         find_vcs = add + "/sdk/findVCS.do"; // 版本信息
