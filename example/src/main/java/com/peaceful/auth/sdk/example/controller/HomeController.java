@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.peaceful.auth.sdk.api.AuthService;
 import com.peaceful.auth.sdk.example.other.Contstant;
 import com.peaceful.auth.sdk.example.outer.api.AuthApi;
-import com.peaceful.auth.spring.AUTH;
+import com.peaceful.auth.sdk.spring.AUTH;
 import com.peaceful.common.util.Http;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
