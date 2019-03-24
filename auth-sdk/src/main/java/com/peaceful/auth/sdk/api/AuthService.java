@@ -22,7 +22,7 @@ public interface AuthService {
      * @param password
      * @return
      */
-    boolean login(String email, String password);
+    List<String> login(String email, String password);
 
     /**
      * 退出

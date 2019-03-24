@@ -18,10 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -36,13 +33,16 @@ public class AuthServiceImpl implements com.peaceful.auth.sdk.api.AuthService {
     static int INITIALIZATION_STATE = UNINITIALIZED;
 
 
-    public boolean login(String email, String password) {
+    public List<String> login(String email, String password) {
+        List<String> roleNameList =  new ArrayList<String>();
         if (identificationEmail(email, password)) {
             Http.getRequest().getSession().setAttribute(Constant.CURRENT_USER, email);
-            return true;
-        } else {
-            return false;
+            List<JSONRole> list = getRolesOfSystem();
+            for (JSONRole role: list) {
+                roleNameList.add(role.name);
+            }
         }
+        return roleNameList;
     }
 
     public void logout() {
@@ -308,7 +308,7 @@ public class AuthServiceImpl implements com.peaceful.auth.sdk.api.AuthService {
 
     @Override
     public List<JSONRole> getRolesOfSystem() {
-        return JSON.parseArray(HttpUtils.get(publicServiceURL.find_roles), JSONRole.class);
+        return JSON.parseArray(HttpUtils.get(publicServiceURL.find_roles + "&token=" + SDKConf.token), JSONRole.class);
 
     }
 

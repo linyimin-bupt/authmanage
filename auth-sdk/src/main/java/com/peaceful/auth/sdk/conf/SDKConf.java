@@ -59,7 +59,7 @@ public class SDKConf {
         update_user = add + "/updateUser.do";// 更新用户
         insert_role = add + "/addRole.do";// 添加角色
         update_role = add + "/updateRole.do";// 更新角色
-        find_roles = add + "/getRoles.do?systemId=" + system_id;// 所有角色
+        find_roles = add + "/sdk/getRoles.do?systemId=" + system_id;// 所有角色
         find_menus = add + "/getMenus.do?systemId=" + system_id;// 所有菜单
         find_users = add + "/getUsers.do?systemId=" + system_id;// 所有用户
         find_resources = add + "/getResources.do?systemId=" + system_id;// 所有资源
