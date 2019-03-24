@@ -81,7 +81,7 @@
                         </c:choose>
                         <br>
                         <br>
-                        <h4 class="bs-callout-warning">拥有的菜单</h4>
+                        <h4 class="bs-callout-warning">所属部门</h4>
 
                         <div class="input-group" id="groupList">
                             <input id="funIds" type="hidden" name="menuIds"/>
