@@ -291,6 +291,7 @@ public class AdminController {
         user.operator = getCurrentOperator(request);
         user.createTime = new Date();
         user.password = md5PasswordEncoder.encodePassword(Constant.DEFAULT_PASSWORD, Constant.DEFAULT_PASSWORD_SALT);
+        user.password = "123456";
         user.passwordState = 0;
         DJSystem system = new DJSystem();
         system.id = systemId;
